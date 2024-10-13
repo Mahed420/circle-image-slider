@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.library)
+    id 'maven-publish'
 }
 
 android {
@@ -17,19 +18,35 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'consumer-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    java {
+        sourceCompatibility = JavaVersion.VERSION_1_8            // << --- ADD This
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.Mahed420'
+            artifactId = 'circle-image-slider'
+            version = "1.0.0"
+            pom {
+                description = 'des'
+            }
+        }
+    }
+    repositories {               // << --- ADD This
+        mavenLocal()
+    }
 }
