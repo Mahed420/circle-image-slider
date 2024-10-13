@@ -22,15 +22,11 @@ android {
         }
     }
     java {
-        sourceCompatibility = JavaVersion.VERSION_17            // << --- ADD This
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8           // << --- ADD This
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)        // << --- ADD This
-    }
-}
+
 dependencies {
     implementation 'com.github.Mahed420:circle-image-slider:1.0.0'
     implementation libs.appcompat
